@@ -227,6 +227,14 @@ const connectDB = async () => {
   }
 };
 
+app.use(cors({
+  origin: [
+    "https://YOUR-VERCEL-APP.vercel.app",
+    "http://localhost:5173"
+  ],
+  credentials: true
+}));
+
 // ─── Start Server ────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 5000;
 connectDB().then(() => {
