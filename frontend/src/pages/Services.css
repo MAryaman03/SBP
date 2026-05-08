@@ -1,0 +1,63 @@
+/* Shared page hero */
+.page-hero {
+  padding: 100px 0 80px;
+  text-align: center;
+}
+
+.page-hero__sub {
+  margin-top: 16px;
+  font-size: 16px;
+  color: rgba(255,255,255,0.55);
+}
+
+/* Category tabs */
+.category-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.category-tab {
+  padding: 10px 24px;
+  border: 1.5px solid var(--beige);
+  border-radius: var(--radius-full);
+  background: none;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.category-tab:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.category-tab--active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--dark);
+}
+
+/* Dark mode overrides for tabs inside bg-dark */
+.bg-dark .category-tab {
+  color: var(--beige);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.bg-dark .category-tab:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(204, 169, 110, 0.1);
+}
+
+.bg-dark .category-tab--active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--dark);
+}

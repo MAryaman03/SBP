@@ -1,0 +1,203 @@
+.about-hero { padding: 120px 0 100px; }
+
+.about-story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-story__values {
+  display: flex;
+  gap: 24px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.about-story__value {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark);
+  background: var(--cream-2);
+  padding: 10px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--beige);
+}
+
+.about-story__visual {
+  position: relative;
+}
+
+.about-story__image-main {
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(160deg, rgba(238, 174, 202, 0.4), rgba(148, 187, 233, 0.4));
+  position: relative;
+  overflow: hidden;
+}
+
+.about-story__image-main::after {
+  content: '';
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: calc(var(--radius-lg) - 12px);
+  background: radial-gradient(ellipse, rgba(238, 174, 202, 0.1), transparent 70%);
+}
+
+.about-story__image-accent {
+  position: absolute;
+  bottom: 24px;
+  right: 24px; /* fixed out of bounds */
+  background: var(--white);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+  text-align: center;
+}
+
+.about-story__year {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--gold-dark);
+  line-height: 1;
+}
+
+.about-story__year-sub {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Mission */
+.about__mission {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--dark);
+  line-height: 1.7;
+  margin-top: 24px;
+}
+
+/* Team - Luxury Redesign */
+.luxury-team-card {
+  background: rgba(26, 26, 26, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: var(--radius-lg);
+  padding: 40px 24px;
+  text-align: center;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-team-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+  transition: box-shadow 0.5s;
+}
+
+.luxury-team-card:hover {
+  box-shadow: 0 12px 40px rgba(204, 169, 110, 0.15);
+  transform: translateY(-8px);
+  border-color: rgba(204, 169, 110, 0.3);
+}
+
+.luxury-team-card:hover::before {
+  box-shadow: inset 0 0 0 1px rgba(204, 169, 110, 0.2);
+}
+
+.team-card__avatar-container {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.5s;
+  padding: 4px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.luxury-team-card:hover .team-card__avatar-container {
+  border-color: var(--gold-light);
+}
+
+.team-card__avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+  color: var(--dark);
+  font-family: var(--font-serif);
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.team-card__avatar--img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  background: none;
+}
+
+.team-card__name {
+  font-size: 20px;
+  color: var(--white);
+  font-weight: 500;
+  font-family: var(--font-serif);
+  transition: color 0.4s;
+}
+
+.luxury-team-card:hover .team-card__name {
+  color: var(--gold-light);
+}
+
+.team-card__role {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  margin: 12px 0 8px;
+}
+
+.team-card__exp {
+  font-size: 13px;
+  color: var(--beige);
+  margin-bottom: 8px;
+}
+
+.team-card__specialty {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .about-story { grid-template-columns: 1fr; gap: 40px; }
+  .about-story__image-accent { right: 16px; bottom: 16px; }
+}
