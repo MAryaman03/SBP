@@ -44,12 +44,18 @@ export default function Login() {
     try {
       const res = await signIn(data);
       toast.success(`Welcome back, ${res.user.name?.split(' ')[0]}! ✨`, {
-        duration: 3,
+        duration: 3000,
         icon: '👋',
       });
       navigate(res.user.role === 'admin' ? '/admin' : '/dashboard', { replace: true });
     } catch (err: any) {
-      const errorMessage = err.response?.data?.message || 'Sign in failed. Please try again.';
+      // Show the real server error (wrong password, user not found, etc.)
+      const errorMessage =
+        err.response?.data?.message ||
+        (err.code === 'ECONNABORTED' ? 'Server is waking up — please wait 30 seconds and try again.' : null) ||
+        (err.message === 'Network Error' ? 'Cannot reach server. Is the backend deployed?' : null) ||
+        err.message ||
+        'Sign in failed. Please try again.';
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);

@@ -24,7 +24,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const createAPIClient = (): AxiosInstance => {
   const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
-    timeout: 10000,
+    timeout: 30000, // 30s — Render free tier cold-start can take up to 30s
     withCredentials: true,
   });
 
@@ -131,6 +131,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const response = await API.post<any>('/auth/login', credentials);
       const { token, refreshToken: newRefreshToken, user: responseUser } = response.data.data || response.data;
 
+      if (!token || !responseUser) {
+        throw new Error('Invalid response from server. Please try again.');
+      }
+
       localStorage.setItem('accessToken', token);
       if (newRefreshToken) {
         localStorage.setItem('refreshToken', newRefreshToken);
@@ -140,7 +144,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(responseUser);
       return response.data.data || response.data;
     } catch (err: any) {
-      const errorMessage = err.response?.data?.message || 'Sign in failed';
+      // Surface the real server error message
+      const errorMessage =
+        err.response?.data?.message ||
+        (err.code === 'ECONNABORTED' ? 'Server is waking up, please try again in 30 seconds.' : null) ||
+        (err.message === 'Network Error' ? 'Cannot reach server. Check your internet or the backend may be down.' : null) ||
+        err.message ||
+        'Sign in failed. Please try again.';
       setError(errorMessage);
       throw err;
     }
